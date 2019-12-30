@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>User Detail</title>
+</head>
+<body>
+	<h1>User Detail</h1>
+	<ul th:object="${user}">
+		<li th:text="*{name}"></li>
+		<li th:text="*{username}"></li>
+	</ul>
+	<div th:if="${user.account==null}">
+		<a th:href="@{/accounts/new(userId=${user.id})}">Create Account</a>
+	</div>
+	<div th:if="${user.account!=null}">
+		<h2>Account Info</h2>
+		<p th:text="${user.account.accountNumber}"></p>
+		<p th:text="${user.account.balance}"></p>
+	</div>
+</body>
+</html>

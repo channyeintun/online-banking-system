@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="./fragment/head::app-head (title='admin portal - users')"></head>
+<body>
+	<div th:replace="./fragment/navbar::app-navbar"></div>
+	<div class="container mt-3">
+		<h1>User List</h1>
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Name</th>
+					<th scope="col">Username</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user:${users}">
+					<td th:text="${user.id}"></td>
+					<td th:text="${user.name}"></td>
+					<td th:text="${user.username}">@</td>
+					<td><a th:href="@{/admin/users/detail(id=${user.id})}"><i
+							class="fa fa-eye" aria-hidden="true"></i></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

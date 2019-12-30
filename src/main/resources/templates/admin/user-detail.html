@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="./fragment/head::app-head">
+</head>
+<body>
+	<div th:replace="./fragment/navbar::app-navbar"></div>
+	<div class="container mt-3">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card mb-2" style="width: 18rem;">
+					<div class="card-header">User Detail</div>
+					<ul th:object="${user}" class="list-group list-group-flush">
+						<li th:text="*{'Full Name: '+name}" class="list-group-item"></li>
+						<li th:text="*{'Username: '+username}" class="list-group-item"></li>
+						<li th:if="${user.account == null}" class="list-group-item"><a
+							class="btn btn-primary stretched-link"
+							th:href="@{/admin/accounts/new(userId=${user.id})}">Create
+								Account</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-md-12">
+				<div th:if="${user.account != null}">
+					<div class="card my-2" style="width: 18rem;">
+						<div class="card-header">Account Info</div>
+						<ul class="list-group list-group-flush">
+							<li th:text="${user.account.accountNumber}"
+								class="list-group-item"></li>
+							<li th:text="${user.account.balance}" class="list-group-item"></li>
+							<li th:if="${user.accountNonLocked}" class="list-group-item">Account
+								Non Locked</li>
+							<li th:if="${!user.accountNonLocked}" class="list-group-item">Account
+								Locked</li>
+							<li class="list-group-item"><a class="btn btn-primary stretched-link"
+								th:href="@{/admin/users/update(userId=${user.id})}">Edit</a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="./fragment/head::app-head">
+</head>
+<body>
+	<div th:replace="./fragment/navbar::app-navbar"></div>
+	<div class="container mt-3">
+		<h1>Edit User</h1>
+		<form th:action="@{/admin/users/update}" method="POST"
+			th:object="${user}">
+			<input type="hidden" th:field="*{id}" /> <input type="hidden"
+				th:field="*{username}" />
+			<div class="form-group">
+				<label>Name:</label> <input class="form-control" type="text"
+					name="name" th:field="*{name}" />
+			</div>
+			<div class="form-group">
+				<label>New Password <span id="newPassLabel">+</span></label> <input
+					type="hidden" th:field="*{password}" /> <input
+					class="form-control" type="password" style="display: none"
+					name="newPassword" id="newPassword" />
+			</div>
+			<div class="form-group">
+				<label>Status</label> <select class="form-control" th:field="*{accountNonLocked}">
+					<option value="false">Locked</option>
+					<option value="true">Non Locked</option>
+				</select>
+			</div>
+			<button class="btn btn-primary" type="submit">Save</button>
+		</form>
+	</div>
+	<script>
+		$("#newPassLabel").click(function() {
+			$("#newPassword").toggle();
+		});
+	</script>
+</body>
+</html>

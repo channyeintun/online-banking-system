@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin - Accounts</title>
+</head>
+<body>
+	<form th:action="@{/accounts/search}" method="POST">
+		<label>Account:</label>
+		<input type="text" name="accountNumber" />
+		<input type="submit" value="search"/>
+	</form>
+	<div th:if="${accounts}!=null">
+		<table border=1>
+			<tr>
+				<th>Account Number</th>
+				<th>Name</th>
+				<th>Balance</th>
+				<th>Action</th>
+			</tr>
+			<tr th:each="account:${accounts}">
+				<td th:text="${account.accountNumber}"></td>
+				<td th:text="${account.user.name}"></td>
+				<td th:text="${account.balance}"></td>
+				<td>
+					<a th:href="@{deposit/accountId=${account.id}}"></a>
+					<a th:href="@{withdrawal/accountId=${account.id}}"></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="./fragment/head::app-head">
+</head>
+<body>
+<div th:replace="./fragment/navbar::app-navbar"></div>
+<div class="container mt-3">
+	<h1>Create Account For <span th:text=${account.user.name}></span></h1>
+	<form th:action="@{/admin/accounts}" method="POST" th:object="${account}">
+	   <input type="hidden" th:field="*{user}">
+	   <label>Account Number:</label>
+	   <input type="text" name="name" th:field="*{accountNumber}"/>
+	   <input type="submit" value="Create"/>
+	</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin - Deposit</title>
+</head>
+<body>
+	<form th:action="@{/deposit}" method="POST">
+		<label>Account Number:</label>
+		<input type="text" name="accountNumber"/>
+		<input type="submit" value="Search" />
+	</form>
+</body>
+</html>

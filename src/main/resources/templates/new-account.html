@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Create Account</title>
+</head>
+<body>
+	<h1>Create Account For <span th:text="${account.user.name}"></span></h1>
+	<form th:action="@{/accounts}" method="POST" th:object="${account}">
+		<label>Account Number:</label>
+		<input type="hidden" th:field="*{user}">
+		<input type="text" name="name" th:field="*{accountNumber}"/>
+		<input type="submit" value="Create" />
+	</form>
+</body>
+</html>
