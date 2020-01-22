@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="./fragment/head::app-head">
+</head>
+<body>
+	<div th:replace="./fragment/navbar::app-navbar"></div>
+	<div class="container mt-3">
+		<div class="alert alert-danger" role="alert">
+			Access Denied! You don't have the permission to manage. Go back to <a th:href="@{/}" class="alert-link">Home</a>
+		</div>
+	</div>
+</body>
+</html>

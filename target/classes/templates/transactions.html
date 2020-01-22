@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="./fragment/head::app-head (title='Admin Portal - Home')">
+</head>
+<body>
+	<div th:replace="./fragment/user-navbar::user-navbar"></div>
+	<div class="container">
+		<div class="row mt-3">
+			<div class="col-md-12">
+				<form class="form-inline" th:action="@{/transactions/filter}" method="GET">
+					<label>From </label>
+					<div class="form-group">
+						<input class="form-control datepicker m-2" type="date"
+							name="startDate"> <label> To </label>
+					</div>
+					<div class="form-group">
+						<input class="form-control datepicker m-2" type="date" name="endDate">
+					</div>
+					<button class="btn btn-primary" type="submit">Search</button>
+				</form>
+				<div th:if="${transactions}">
+
+					<table class="table table-striped">
+						<thead class="thead-light">
+							<tr>
+
+								<th>Description</th>
+								<th>Type</th>
+								<th>Transaction time</th>
+								<th>Amount</th>
+							</tr>
+						</thead>
+						<tr th:each="transaction:${transactions}">
+							<td th:text="${transaction.description}"></td>
+							<td th:text="${transaction.type}"></td>
+							<td th:text="${transaction.transactionTime}"></td>
+							<td th:text="${transaction.amount}"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

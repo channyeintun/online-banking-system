@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="./fragment/head::app-head">
+</head>
+<style>
+.error {
+	color: red;
+}
+</style>
+<body>
+	<div th:replace="./fragment/navbar::app-navbar"></div>
+	<div class="container mt-3">
+		<p>
+			Name:<span th:text="${account.user.name}"></span>
+		</p>
+		<p>
+			Account Number:<span th:text="${account.accountNumber}"></span>
+		</p>
+		<p>
+			Balance:<span th:text="${account.balance}"></span> MMK
+		</p>
+		<p class="error" th:if="${error!=null}" th:text="${error}"></p>
+		<form th:action="@{/admin/withdrawal}" method="POST">
+			<input type="hidden" name="accountId" th:value="${account.id}">
+			<label>Amount:</label>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-3">
+						<input class="form-control" type="text" name="amount" required />
+					</div>
+				</div>
+
+			</div>
+			<button class="btn btn-primary" name="submit" type="submit">Submit</button>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="./fragment/head::app-head (title='admin portal - accounts')">
+</head>
+<body>
+
+	<div th:replace="./fragment/navbar::app-navbar"></div>
+	<div class="container mt-3">
+		<form class="form-inline" th:action="@{/admin/accounts/search}"
+			method="POST">
+			<div class="form-group mb-2">
+				<label for="accNum">Account Number:</label> <input class="form-control ml-2"
+					type="text" id="accNum" name="accountNumber" />
+			</div>
+			<button class="btn btn-primary mb-2 ml-2" type="submit">Search</button>
+		</form>
+		<div th:if="${accounts != null}">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Account Number</th>
+						<th>Name</th>
+						<th>Balance</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="account:${accounts}">
+						<td th:text="${account.accountNumber}"></td>
+						<td th:text="${account.user.name}"></td>
+						<td th:text="${account.balance}"></td>
+						<td><a th:href="@{/admin/deposit(accountId=${account.id})}">Deposit</a>/
+							<a th:href="@{/admin/withdrawal(accountId=${account.id})}">Withdrawal</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

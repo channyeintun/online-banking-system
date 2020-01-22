@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="./fragment/head::app-head (title='Admin Portal - Home')">
+</head>
+<body>
+	<div th:replace="./fragment/user-navbar::user-navbar"></div>
+	<div class="container">
+		<div class="row mt-3">
+			<div class="col-md-12">
+				<ol class="breadcrumb">
+					<li><a href="" style='text-decoration: none;'> Home </a></li>
+				</ol>
+				<div class="card" style="width: 18rem;">
+					<div class="card-header">Account Info</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item" th:text="${'Full Name: '+user.name}"></li>
+						<li class="list-group-item"
+							th:text="${'Username: '+user.username}"></li>
+						<li class="list-group-item"
+							th:text="${'Balance: '+user.account.balance}"></li>
+						<li class="list-group-item"
+							th:text="${'Account Number: '+user.account.accountNumber}"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
